@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">cleanup</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyBkKk9z046bwDjeyYhMJ9OR8t9QTJRQLPg
+    </string>
+</resources>

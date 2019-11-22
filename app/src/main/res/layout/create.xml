@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".create">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_marginTop="20dp"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Create a new account" />
+
+        <EditText
+            android:id="@+id/edtEmail2"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/email"
+            android:ems="10"
+            android:hint="  Email"
+            android:inputType="textEmailAddress"
+
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtPassword2"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/lock"
+            android:ems="10"
+            android:hint="  Password"
+            android:inputType="textPassword"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/name"
+            android:ems="10"
+            android:hint="  Name"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/age"
+            android:ems="10"
+            android:hint="  Birth date (ex. Year/Month/Date)"
+            android:inputType="date"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtGender"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/gender"
+            android:ems="10"
+            android:hint="  Gender (Male/Female)"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:layout_width="380dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="#11000000"
+            android:drawableLeft="@drawable/phone"
+            android:ems="10"
+            android:hint="  Phone Number"
+            android:inputType="number"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnCreate"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="140dp"
+            android:background="@drawable/corners"
+            android:elevation="16dp"
+            android:text="Create"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
