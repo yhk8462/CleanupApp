@@ -14,7 +14,9 @@ public class ClusterMarker {
     public double latitude;
     public double longitude;
 
+    public ClusterMarker(){
 
+    }
 
     public ClusterMarker(String title, String when, String where, String contact, double latitude, double longitude) {
         this.title = title;

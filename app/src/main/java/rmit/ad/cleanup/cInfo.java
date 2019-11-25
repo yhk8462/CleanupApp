@@ -7,15 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class cInfo extends AppCompatActivity {
@@ -29,7 +24,7 @@ public class cInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cinfo);
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("Cleanup SItes");
+        mDatabase= FirebaseDatabase.getInstance().getReference("Cleanup Sites");
 
         final Button create = findViewById(R.id.btnCreate);
 
@@ -50,12 +45,11 @@ public class cInfo extends AppCompatActivity {
                 String when = mwhen.getText().toString().trim();
                 String contact = mcontact.getText().toString().trim();
 
+                String id=  mDatabase.push().getKey();
+                ClusterMarker cleanup = new ClusterMarker(title,where,when,contact,latitude,longitude);
+                //databaseReference
+                mDatabase.child(id).setValue(cleanup);
 
-                ClusterMarker cleanup = new
-                        ClusterMarker(title,where,when,contact,latitude,longitude);
-                mDatabase.child("Cleanup Sites").setValue(cleanup);
-
-                addSite(cleanup);
                 Toast.makeText(cInfo.this,"Saved",Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(cInfo.this, cMap.class);
@@ -64,21 +58,5 @@ public class cInfo extends AppCompatActivity {
         });
     }
 
-    public void addSite(ClusterMarker cmarker) {
-        db.collection("Cleanup Sites")
-                .add(cmarker)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(cInfo.this, "Add success", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(cInfo.this, "Add failure", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-    }
 }

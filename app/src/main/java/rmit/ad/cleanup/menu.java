@@ -26,8 +26,15 @@ public class menu extends AppCompatActivity {
         cJoin = findViewById(R.id.btnJoin);
         cMap = findViewById(R.id.btnMap);
 
+        cJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(menu.this, cMap2.class);
+                startActivity(intent2);
+            }
+        });
 
-        cMap.setOnClickListener(new View.OnClickListener() {
+        cCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(menu.this, cMap.class);

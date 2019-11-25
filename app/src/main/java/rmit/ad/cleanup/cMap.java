@@ -66,7 +66,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
 
     private GoogleMap mMap;
     private ChildEventListener mChildEventListener;
-    private DatabaseReference mSites;
+    public DatabaseReference mSites;
 
     private static final String TAG = "cMap";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -92,7 +92,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
 
         ChildEventListener mChildEventListener;
 
-        mSites= FirebaseDatabase.getInstance().getReference("Cleanup Sites");
+        mSites= FirebaseDatabase.getInstance().getReference().child("Cleanup Sites");
         mSites.push().setValue(marker);
 
 
@@ -125,14 +125,17 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
             //Get markers from firebase
             googleMap.setOnMarkerClickListener(this);
             mMap = googleMap;
-
             mSites.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot s : dataSnapshot.getChildren()){
                         ClusterMarker mark = s.getValue(ClusterMarker.class);
-                        LatLng location=new LatLng(mark.latitude,mark.longitude);
-                        mMap.addMarker(new MarkerOptions().position(location).title(mark.getTitle())).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                        LatLng location=new LatLng(mark.latitude, mark.longitude);
+                        mMap.addMarker(new MarkerOptions()
+                                .position(location)
+                                .title(mark.getTitle())
+                        ).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+                        Log.d(TAG, "Get marker location");
                     }
                 }
 
@@ -149,10 +152,6 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
-                    mMap.addMarker(new MarkerOptions()
-                            .position(latLng)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
-                    );
                     AlertDialog.Builder builder = new AlertDialog.Builder(cMap.this)
                             .setTitle("Confirmation")
                             .setMessage("Do you want to create a cleanup?"+ "Your coordinates are:"+latLng)
