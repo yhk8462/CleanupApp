@@ -24,9 +24,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import rmit.ad.cleanup.dto.User;
 
 public class create extends AppCompatActivity {
 
@@ -63,6 +66,13 @@ public class create extends AppCompatActivity {
         });
     }
 
+
+    private void saveUserInDb(String uuId, String email, String password) {
+        User user = new User(name.getText().toString(), date.getText().toString(), phone.getText().toString(), email, password);
+        FirebaseDatabase.getInstance().getReference().child("users").child(uuId).setValue(user);
+
+    }
+
     public void create() {
         String NewEmail, NewPassword;
 
@@ -71,6 +81,7 @@ public class create extends AppCompatActivity {
 
         NewEmail = mEmail2.getText().toString();
         NewPassword = mPassword2.getText().toString();
+
 
         mAuth.createUserWithEmailAndPassword(NewEmail, NewPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -90,6 +101,10 @@ public class create extends AppCompatActivity {
                         }
                     }
                 });
+        String userId = mAuth.getUid();
+
+        // Save user in firebase
+        saveUserInDb(userId, NewEmail, NewPassword);
     }
 
     public void addSite(List site) {

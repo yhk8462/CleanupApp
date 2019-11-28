@@ -4,7 +4,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class User {
-    private String id;
     private String name;
     private String dateOfBirth;
     private String phoneNumber;
@@ -19,14 +18,6 @@ public class User {
         this.setPhoneNumber(phoneNumber);
         this.setEmail(email);
         this.setPassword(password);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
