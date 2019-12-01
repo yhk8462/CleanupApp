@@ -60,16 +60,16 @@ public class cInfo extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(strTitle.isEmpty()){
+                if(mtitle.getText().toString().isEmpty()){
                     return;
                 }
-                if(strWhere.isEmpty()){
+                if(mwhere.getText().toString().isEmpty()){
                     return;
                 }
-                if(strWhen.isEmpty()){
+                if(mwhen.getText().toString().isEmpty()){
                     return;
                 }
-                if(strContact.isEmpty()){
+                if(mcontact.getText().toString().isEmpty()){
                     return;
                 }
                 double latitude= Double.parseDouble(mlatitude.getText().toString().trim());

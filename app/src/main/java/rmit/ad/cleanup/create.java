@@ -76,16 +76,16 @@ public class create extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(strName.isEmpty()){
+                if(name.getText().toString().isEmpty()){
                     return;
                 }
-                else if(strDate.isEmpty()){
+                if(date.getText().toString().isEmpty()){
                     return;
                 }
-                else if(strGender.isEmpty()){
+                if(gender.getText().toString().isEmpty()){
                     return;
                 }
-                else if(strPhone.isEmpty()){
+                if(phone.getText().toString().isEmpty()){
                     return;
                 }
 
@@ -94,6 +94,8 @@ public class create extends AppCompatActivity {
                 addSite(cleaningSite);
                 Toast.makeText(create.this, "Account Created", Toast.LENGTH_SHORT).show();
                 alert();
+
+
             }
         });
     }
