@@ -41,6 +41,14 @@ public class menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        cMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(menu.this, cMap3.class);
+                startActivity(intent3);
+            }
+        });
     }
 
 }

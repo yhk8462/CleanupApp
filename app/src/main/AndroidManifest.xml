@@ -26,17 +26,20 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false"/>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".create"></activity>
         <activity android:name=".menu"></activity>
         <activity android:name=".cMap"></activity>
         <activity android:name=".JoinGroup"></activity>
         <activity android:name=".cInfo"></activity>
+        <activity android:name=".cMap3"></activity>
+
+        <activity android:name=".MainMenu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
