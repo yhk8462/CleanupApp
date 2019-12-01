@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="#FFC107"
+        android:padding="5dp"
+        android:text="Join a clean up"
+        android:textColor="#090807"
+        android:textSize="24sp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/join_cleanup_banner1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="We are currently working on a clean up project named,"
+        android:textColor="#090807"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cleanupTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:textColor="#090807"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="Do you want to join with us?"
+        android:textColor="#090807"
+        android:textSize="18sp" />
+
+</LinearLayout>

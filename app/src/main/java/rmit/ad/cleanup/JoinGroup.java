@@ -22,11 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class cMap2 extends FragmentActivity implements OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener{
+public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener{
     private GoogleMap mMap;
     private ChildEventListener mChildEventListener;
     private DatabaseReference mUsers;
     Marker marker;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class cMap2 extends FragmentActivity implements OnMapReadyCallback,Locati
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(rmit, 15));
 
         googleMap.setOnMarkerClickListener(this);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         mUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -58,8 +60,11 @@ public class cMap2 extends FragmentActivity implements OnMapReadyCallback,Locati
                 for (DataSnapshot s : dataSnapshot.getChildren()){
                     ClusterMarker user = s.getValue(ClusterMarker.class);
                     LatLng location=new LatLng(user.latitude,user.longitude);
-                    Toast.makeText(cMap2.this,"locations"+user.getLatitude()+user.getLongitude(),Toast.LENGTH_SHORT).show();
-                    mMap.addMarker(new MarkerOptions().position(location).title(user.getTitle())).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    Toast.makeText(JoinGroup.this,"locations"+user.getLatitude()+user.getLongitude(),Toast.LENGTH_SHORT).show();
+                    mMap.addMarker(new MarkerOptions()
+                            .position(location)
+                            .title(user.getTitle()))
+                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
                 }
             }
 
@@ -93,6 +98,12 @@ public class cMap2 extends FragmentActivity implements OnMapReadyCallback,Locati
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        return false;
+        CleanupJoinDialog cleanupJoinDialog = new CleanupJoinDialog();
+
+        Bundle args = new Bundle();
+        args.putString("title", marker.getTitle());
+        cleanupJoinDialog.setArguments(args);
+        cleanupJoinDialog.show(getSupportFragmentManager(),"cleanup_join_dialog");
+        return true;
     }
 }

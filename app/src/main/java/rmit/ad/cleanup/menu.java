@@ -29,7 +29,7 @@ public class menu extends AppCompatActivity {
         cJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(menu.this, cMap2.class);
+                Intent intent2 = new Intent(menu.this, JoinGroup.class);
                 startActivity(intent2);
             }
         });

@@ -35,7 +35,7 @@
         <activity android:name=".create"></activity>
         <activity android:name=".menu"></activity>
         <activity android:name=".cMap"></activity>
-        <activity android:name=".cMap2"></activity>
+        <activity android:name=".JoinGroup"></activity>
         <activity android:name=".cInfo"></activity>
 
     </application>
