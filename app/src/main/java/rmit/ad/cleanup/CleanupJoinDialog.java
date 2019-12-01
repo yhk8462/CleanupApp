@@ -35,7 +35,10 @@ public class CleanupJoinDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.custom_join_dialog_layout, null);
 
         TextView cleanUpTitle = (view.findViewById(R.id.cleanupTitle));
+        TextView infoLog = (view.findViewById(R.id.infos));
         cleanUpTitle.setText(getArguments().getString("title"));
+        infoLog.setText(getArguments().getString("info"));
+
         builder.setView(view);
 
         builder.setPositiveButton("Join", new DialogInterface.OnClickListener() {

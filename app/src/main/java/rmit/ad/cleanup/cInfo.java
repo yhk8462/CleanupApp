@@ -35,6 +35,13 @@ public class cInfo extends AppCompatActivity {
         mlatitude = findViewById(R.id.edtLat);
         mlongitude = findViewById(R.id.edtLng);
 
+        Bundle extras = getIntent().getExtras();
+        double sLatitude = extras.getDouble("sLatitude");
+        double sLongitude = extras.getDouble("sLongitude");
+        String sLat = Double.toString(sLatitude);
+        String sLong = Double.toString(sLongitude);
+        mlatitude.setText(sLat);
+        mlongitude.setText(sLong);
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

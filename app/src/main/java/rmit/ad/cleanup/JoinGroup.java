@@ -50,6 +50,7 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
         LatLng rmit =  new LatLng( 10.730183, 106.694264);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(rmit));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(rmit, 15));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
         googleMap.setOnMarkerClickListener(this);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -63,8 +64,10 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
                     Toast.makeText(JoinGroup.this,"locations"+user.getLatitude()+user.getLongitude(),Toast.LENGTH_SHORT).show();
                     mMap.addMarker(new MarkerOptions()
                             .position(location)
-                            .title(user.getTitle()))
-                            .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            .title(user.getTitle())
+                            .snippet("Where: "+user.getWhen()+"\n"+ "When: " + user.getWhere()+"\n" +"Contact: "+user.getContact())
+                            )
+                            .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
                 }
             }
 
@@ -102,6 +105,7 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
 
         Bundle args = new Bundle();
         args.putString("title", marker.getTitle());
+        args.putString("info",marker.getSnippet());
         cleanupJoinDialog.setArguments(args);
         cleanupJoinDialog.show(getSupportFragmentManager(),"cleanup_join_dialog");
         return true;

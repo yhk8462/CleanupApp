@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,6 +124,8 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
 
 
             //Get markers from firebase
+
+
             googleMap.setOnMarkerClickListener(this);
             mMap = googleMap;
             mSites.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -134,6 +137,9 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
                         mMap.addMarker(new MarkerOptions()
                                 .position(location)
                                 .title(mark.getTitle())
+                                .snippet(mark.getWhen())
+
+
                         ).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
                         Log.d(TAG, "Get marker location");
                     }
@@ -151,7 +157,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
             //add marker if clicked on map
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
-                public void onMapClick(LatLng latLng) {
+                public void onMapClick(final LatLng latLng) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(cMap.this)
                             .setTitle("Confirmation")
                             .setMessage("Do you want to create a cleanup?"+ "Your coordinates are:"+latLng)
@@ -159,6 +165,8 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent intent = new Intent(cMap.this, cInfo.class);
+                                    intent.putExtra("sLatitude", latLng.latitude);
+                                    intent.putExtra("sLongitude", latLng.longitude);
                                     startActivity(intent);
                                 }
                             })
