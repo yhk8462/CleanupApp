@@ -34,7 +34,22 @@ public class cInfo extends AppCompatActivity {
         mcontact = findViewById(R.id.edtContact);
         mlatitude = findViewById(R.id.edtLat);
         mlongitude = findViewById(R.id.edtLng);
-
+        final String strTitle = mtitle.getText().toString();
+        final String strWhere   = mwhere.getText().toString();
+        final String strWhen = mwhen.getText().toString();
+        final String strContact = mcontact.getText().toString();
+        if(strTitle.isEmpty()){
+            mtitle.setError("Error no input");
+        }
+        if(strWhere.isEmpty()){
+            mwhere.setError("Error no input");
+        }
+        if(strWhen.isEmpty()){
+            mwhen.setError("Error no input");
+        }
+        if(strContact.isEmpty()){
+            mcontact.setError("Error no input");
+        }
         Bundle extras = getIntent().getExtras();
         double sLatitude = extras.getDouble("sLatitude");
         double sLongitude = extras.getDouble("sLongitude");
@@ -45,6 +60,18 @@ public class cInfo extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(strTitle.isEmpty()){
+                    return;
+                }
+                if(strWhere.isEmpty()){
+                    return;
+                }
+                if(strWhen.isEmpty()){
+                    return;
+                }
+                if(strContact.isEmpty()){
+                    return;
+                }
                 double latitude= Double.parseDouble(mlatitude.getText().toString().trim());
                 double longitude= Double.parseDouble(mlongitude.getText().toString().trim());
                 String title = mtitle.getText().toString().trim();

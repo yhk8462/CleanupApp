@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,12 +54,42 @@ public class create extends AppCompatActivity {
         date = findViewById(R.id.edtAge);
         gender = findViewById(R.id.edtGender);
         phone = findViewById(R.id.edtPhone);
+        final String strName = name.getText().toString();
+        final String strDate = date.getText().toString();
+        final String strGender = gender.getText().toString();
+        final String strPhone = phone.getText().toString();
 
+
+
+        if(strName.isEmpty()){
+            name.setError("Error no input");
+        }
+        if(strDate.isEmpty()){
+            date.setError("Error no input");
+        }
+        if(strGender.isEmpty()){
+            gender.setError("Error no input");
+        }
+        if(strPhone.isEmpty()){
+            phone.setError("Error no input");
+        }
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                create(); //Email and password auth
+                if(strName.isEmpty()){
+                    return;
+                }
+                else if(strDate.isEmpty()){
+                    return;
+                }
+                else if(strGender.isEmpty()){
+                    return;
+                }
+                else if(strPhone.isEmpty()){
+                    return;
+                }
 
+                create(); //Email and password auth
                 List cleaningSite = new List(name.getText().toString(), date.getText().toString(), gender.getText().toString(), phone.getText().toString());
                 addSite(cleaningSite);
                 Toast.makeText(create.this, "Account Created", Toast.LENGTH_SHORT).show();
@@ -81,6 +113,7 @@ public class create extends AppCompatActivity {
 
         NewEmail = mEmail2.getText().toString();
         NewPassword = mPassword2.getText().toString();
+
 
 
         mAuth.createUserWithEmailAndPassword(NewEmail, NewPassword)
