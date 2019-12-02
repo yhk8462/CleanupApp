@@ -41,6 +41,7 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
         ChildEventListener mChildEventListener;
         mUsers= FirebaseDatabase.getInstance().getReference("Cleanup Sites");
         mUsers.push().setValue(marker);
+
     }
 
     @Override
@@ -55,17 +56,19 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
         googleMap.setOnMarkerClickListener(this);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+
         mUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot s : dataSnapshot.getChildren()){
                     ClusterMarker user = s.getValue(ClusterMarker.class);
+                    String key = s.getKey();
+                    //Toast.makeText(JoinGroup.this,""+key,Toast.LENGTH_SHORT).show();
                     LatLng location=new LatLng(user.latitude,user.longitude);
-                    Toast.makeText(JoinGroup.this,"locations"+user.getLatitude()+user.getLongitude(),Toast.LENGTH_SHORT).show();
                     mMap.addMarker(new MarkerOptions()
                             .position(location)
-                            .title(user.getTitle())
-                            .snippet("Where: "+user.getWhen()+"\n"+ "When: " + user.getWhere()+"\n" +"Contact: "+user.getContact())
+                            .title(key)
+                            .snippet(user.getTitle()+"\n"+"Where: "+user.getWhen()+"\n"+ "When: " + user.getWhere()+"\n" +"Contact: "+user.getContact())
                             )
                             .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
                 }
@@ -102,10 +105,10 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
     @Override
     public boolean onMarkerClick(Marker marker) {
         CleanupJoinDialog cleanupJoinDialog = new CleanupJoinDialog();
-
         Bundle args = new Bundle();
-        args.putString("title", marker.getTitle());
+        args.putString("key", marker.getTitle());
         args.putString("info",marker.getSnippet());
+
         cleanupJoinDialog.setArguments(args);
         cleanupJoinDialog.show(getSupportFragmentManager(),"cleanup_join_dialog");
         return true;

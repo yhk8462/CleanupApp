@@ -42,16 +42,19 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="350dp"
         android:background="@drawable/mylocation"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="550dp"
         />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="392dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="10dp"
         android:textSize="30dp"
-        android:text="Tap the location for SIte" />
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:background="#05AA0F"
+        android:text="Tap any location to create" />
 
 </RelativeLayout>

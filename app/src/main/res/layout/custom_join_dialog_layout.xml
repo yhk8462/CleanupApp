@@ -32,15 +32,6 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/cleanupTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:padding="5dp"
-        android:textColor="#090807"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/infos"
         android:layout_width="match_parent"
         android:layout_height="101dp"

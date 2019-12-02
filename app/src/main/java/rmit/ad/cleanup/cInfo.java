@@ -57,6 +57,7 @@ public class cInfo extends AppCompatActivity {
         String sLong = Double.toString(sLongitude);
         mlatitude.setText(sLat);
         mlongitude.setText(sLong);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
