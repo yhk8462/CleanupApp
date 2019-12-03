@@ -2,6 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/corners"
+        android:elevation="16dp"
+        android:text="Menu"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp" />
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"

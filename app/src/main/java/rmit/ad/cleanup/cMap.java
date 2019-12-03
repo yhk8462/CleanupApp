@@ -85,6 +85,14 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
 
 
         Button button = findViewById(R.id.btnRMIT);
+        Button btnreturn = findViewById(R.id.btnReturn);
+        btnreturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent menu = new Intent(cMap.this, menu.class);
+                startActivity(menu);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

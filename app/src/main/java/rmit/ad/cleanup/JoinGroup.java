@@ -1,8 +1,12 @@
 package rmit.ad.cleanup;
 
+import android.content.Intent;
+import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
@@ -42,6 +46,14 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
         mUsers= FirebaseDatabase.getInstance().getReference("Cleanup Sites");
         mUsers.push().setValue(marker);
 
+        Button btnreturn = findViewById(R.id.btnReturn);
+        btnreturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent menu = new Intent(JoinGroup.this, menu.class);
+                startActivity(menu);
+            }
+        });
     }
 
     @Override
