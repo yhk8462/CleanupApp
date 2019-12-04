@@ -16,7 +16,6 @@
         android:textSize="16dp" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -24,14 +23,30 @@
         android:layout_height="match_parent"
         tools:context=".JoinGroup" />
 
+    <SearchView
+        android:id="@+id/sv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:paddingTop="10dp"
+        android:elevation="5dp"
+        android:background="@drawable/bg_round"
+        />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#213D61"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="Tap an icon to join a cleanup"
         android:textAlignment="center"
-        android:padding="5dp"
-        android:background="@color/colorPrimary"
-        android:textSize="30dp"
-        android:text="Tap the icon to join" />
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
 </RelativeLayout>

@@ -35,6 +35,7 @@
         <activity android:name=".cMap3"></activity>
         <activity android:name=".newInfo"></activity>
         <activity android:name=".SiteList"></activity>
+        <activity android:name=".ViewJoinGroup"></activity>
 
         <activity android:name=".MainMenu">
             <intent-filter>

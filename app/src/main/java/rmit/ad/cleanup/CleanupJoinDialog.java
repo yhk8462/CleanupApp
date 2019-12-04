@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -28,30 +31,46 @@ import rmit.ad.cleanup.dto.UserCleanupSite;
  */
 public class CleanupJoinDialog extends DialogFragment {
 
-    private FirebaseAuth mAuth;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.custom_join_dialog_layout, null);
 
         TextView infoLog = (view.findViewById(R.id.infos));
-        infoLog.setText(getArguments().getString("info"));
+        String cleanUpSiteName = "";
+        try {
+            JSONObject siteInfoJson = new JSONObject(getArguments().getString("info"));
+            cleanUpSiteName = (String) siteInfoJson.get("title");
+            Log.d("joinDialog", siteInfoJson.toString());
+
+        } catch (Exception ex) {
+            Log.e("joinDialog", "Error occurred while parsing the json String to JsonObject");
+        }
+        infoLog.setText(cleanUpSiteName);
         final String key = getArguments().getString("key");
-        //Toast.makeText(CleanupJoinDialog.this,""+key,Toast.LENGTH_SHORT).show();
 
         builder.setView(view);
 
-        builder.setPositiveButton("Join", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(CleanupJoinDialog.this.getActivity(), newInfo.class);
+                Intent intent = new Intent(CleanupJoinDialog.this.getActivity(), ViewJoinGroup.class);
                 intent.putExtra("key", key);
+                intent.putExtra("siteInfo", getArguments().getString("info"));
                 startActivity(intent);
             }
         });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        /**
         builder.setNegativeButton("View users joined", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -60,6 +79,7 @@ public class CleanupJoinDialog extends DialogFragment {
                 startActivity(intent2);
             }
         });
+         */
         return builder.create();
     }
 

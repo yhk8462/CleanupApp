@@ -9,10 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:background="#FFC107"
+        android:background="#213D61"
+        android:fontFamily="sans-serif"
         android:padding="5dp"
         android:text="Join a clean up"
-        android:textColor="#090807"
+        android:textColor="@android:color/white"
         android:textSize="24sp" />
 
 
@@ -24,19 +25,20 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
-        android:padding="5dp"
-        android:text="We are currently working on a clean up project named,"
+        android:paddingTop="20dp"
+        android:text="Clean up project name: "
         android:textColor="#090807"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/infos"
         android:layout_width="match_parent"
-        android:layout_height="101dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:padding="5dp"
+        android:text="Clean up project name: "
         android:textColor="#090807"
         android:textSize="24sp" />
 
@@ -45,7 +47,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:padding="5dp"
-        android:text="Do you want to join with us?"
+        android:text="To join and view more details about this project please tap the View button."
         android:textColor="#090807"
         android:textSize="18sp" />
 
