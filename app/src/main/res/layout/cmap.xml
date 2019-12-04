@@ -27,11 +27,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:elevation="10dp"
-        android:background="#FFFF"
+        android:background="@drawable/bg_round"
+
         android:id="@+id/relLayout1">
 
 
@@ -43,7 +44,6 @@
             android:textSize="15sp"
             android:textColor="#000"
             android:id="@+id/input_search"
-            android:background="@null"
             android:hint="Location, City or Zip Code"
             android:imeOptions="actionSearch"/>
 
@@ -59,15 +59,15 @@
         />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="392dp"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="10dp"
-        android:textSize="30dp"
+        android:background="#213D61"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="Tap (map to create/icon to edit)"
         android:textAlignment="center"
-        android:padding="5dp"
-        android:background="#05AA0F"
-        android:text="Tap any location to create" />
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
 
 </RelativeLayout>

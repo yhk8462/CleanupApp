@@ -81,7 +81,7 @@ public class cInfo extends AppCompatActivity {
                 String contact = mcontact.getText().toString().trim();
 
                 String id=  mDatabase.push().getKey();
-                ClusterMarker cleanup = new ClusterMarker(title,where,when,contact,latitude,longitude);
+                ClusterMarker cleanup = new ClusterMarker(title,when,where,contact,latitude,longitude);
                 //databaseReference
                 mDatabase.child(id).setValue(cleanup);
 
