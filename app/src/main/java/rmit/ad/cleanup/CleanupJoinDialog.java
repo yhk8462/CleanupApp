@@ -4,31 +4,18 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-
 import org.json.JSONObject;
 
-import java.util.Date;
 
-import rmit.ad.cleanup.dto.User;
-import rmit.ad.cleanup.dto.UserCleanupSite;
-
-/**
- * Created the Dialog to be shown once the user clicks the a map marker
- * @author Shehani
- */
 public class CleanupJoinDialog extends DialogFragment {
 
     @NonNull
