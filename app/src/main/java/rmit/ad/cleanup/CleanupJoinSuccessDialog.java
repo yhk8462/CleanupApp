@@ -33,7 +33,7 @@ public class CleanupJoinSuccessDialog extends DialogFragment {
                 dialog.dismiss();
             }
         });
-
+        builder.setView(view);
         return builder.create();
     }
 }
