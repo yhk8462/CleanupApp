@@ -1,16 +1,12 @@
 package rmit.ad.cleanup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Intent;
-
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getName();
 
     private FirebaseAuth mAuth;
-    private String fromPage ;
+    private String fromPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getString("from") != null) {
+                fromPage = getIntent().getExtras().getString("from");
+            }
+
+        }
 
         Button login = findViewById(R.id.btnLogin);
         final Button register = findViewById(R.id.btnRegister);
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 =new Intent(MainActivity.this,create.class);
+                Intent intent2 = new Intent(MainActivity.this, create.class);
                 startActivity(intent2);
             }
         });
@@ -69,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Logging in", Toast.LENGTH_SHORT).show();
                             //updateUI(user);
-                            if(fromPage != null && fromPage.equals("JOIN")){
-                                Intent intent =new Intent(MainActivity.this,JoinGroup.class);
+                            if (fromPage != null && fromPage.equals("JOIN")) {
+                                Intent intent = new Intent(MainActivity.this, JoinGroup.class);
                                 startActivity(intent);
                             } else {
-                                Intent intent =new Intent(MainActivity.this,menu.class);
+                                Intent intent = new Intent(MainActivity.this, menu.class);
                                 startActivity(intent);
                             }
                         } else {
