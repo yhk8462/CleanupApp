@@ -11,11 +11,14 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +57,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
 
     private GoogleMap mMap;
     private ChildEventListener mChildEventListener;
-    public DatabaseReference mSites;
+    public DatabaseReference mSites,mDatabase;
 
     private static final String TAG = "cMap";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -81,6 +84,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
         ChildEventListener mChildEventListener;
 
         mSites= FirebaseDatabase.getInstance().getReference().child("Cleanup Sites");
+
         mSites.push().setValue(marker);
 
 
@@ -128,11 +132,13 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot s : dataSnapshot.getChildren()){
                         ClusterMarker mark = s.getValue(ClusterMarker.class);
+                        String key = s.getKey();
+
                         LatLng location=new LatLng(mark.latitude, mark.longitude);
                         mMap.addMarker(new MarkerOptions()
                                 .position(location)
                                 .title(mark.getTitle())
-                                .snippet(mark.getWhen())
+                                .snippet(key)
 
 
                         ).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
@@ -145,8 +151,6 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
                     Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                 }
             });
-
-
 
             init();
             //add marker if clicked on map
@@ -177,7 +181,81 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
         }
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.getSnippet();
+        String key = marker.getSnippet();
 
+        ShowUpdateDialog(key);
+        return true;
+    }
+    private boolean updateData(String key, String title, String location, String date, String contact, double latitude, double longitude ){
+        mDatabase= FirebaseDatabase.getInstance().getReference("Cleanup Sites").child(key);
+        ClusterMarker updateInfo = new ClusterMarker(title,location,date,contact,latitude,longitude);
+        mDatabase.setValue(updateInfo);
+        return true;
+    }
+    private void ShowUpdateDialog(final String key){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.update, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText uTitle = (EditText) dialogView.findViewById(R.id.edtTitle);
+        final EditText uLocation = (EditText) dialogView.findViewById(R.id.edtWhen);
+        final EditText uDate = (EditText) dialogView.findViewById(R.id.edtWhere);
+        final EditText uLatitude = (EditText) dialogView.findViewById(R.id.edtLat);
+        final EditText uLongitude = (EditText) dialogView.findViewById(R.id.edtLng);
+
+        final Button btnUpdate = (Button) dialogView.findViewById(R.id.btnCreate);
+
+        mDatabase= FirebaseDatabase.getInstance().getReference("Cleanup Sites").child(key);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ClusterMarker data = dataSnapshot.getValue(ClusterMarker.class);
+                double lat = data.getLatitude();
+                double lng = data.getLongitude();
+                String sLat = Double.toString(lat);
+                String sLong = Double.toString(lng);
+
+                uTitle.setText(data.getTitle());
+                uLocation.setText(data.getWhere());
+                uDate.setText(data.getWhen());
+                uLatitude.setText(sLat);
+                uLongitude.setText(sLong);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        dialogBuilder.setTitle("Update info");
+        dialogBuilder.setMessage("Warning!! This will reset Users joined");
+        final AlertDialog alertDialog = dialogBuilder.create();
+        Window window = alertDialog.getWindow();
+        window.setLayout(300, 300);
+        alertDialog.show();
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double latitude= Double.parseDouble(uLatitude.getText().toString().trim());
+                double longitude= Double.parseDouble(uLongitude.getText().toString().trim());
+                String title = uTitle.getText().toString().trim();
+                String location = uLocation.getText().toString().trim();
+                String date = uDate.getText().toString().trim();
+                String contact = "0762002087";
+                updateData(key,title, location, date, contact, latitude, longitude );
+                alertDialog.dismiss();
+            }
+        });
+
+
+
+    }
 
 
     private void init(){
@@ -334,10 +412,7 @@ public class cMap extends FragmentActivity implements OnMapReadyCallback, Google
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        return false;
-    }
+
 
     @Override
     public void onLocationChanged(Location location) {
