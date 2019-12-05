@@ -28,6 +28,8 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:paddingTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="sans-serif"
         android:text="Clean up project name: "
         android:textColor="#090807"
         android:textSize="18sp" />
@@ -36,17 +38,22 @@
         android:id="@+id/infos"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:fontFamily="sans-serif"
         android:layout_gravity="center"
         android:padding="5dp"
         android:text="Clean up project name: "
+        android:textStyle="bold"
         android:textColor="#090807"
-        android:textSize="24sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
+        android:fontFamily="sans-serif"
         android:padding="5dp"
+        android:layout_marginLeft="10dp"
         android:text="To join and view more details about this project please tap the View button."
         android:textColor="#090807"
         android:textSize="18sp" />

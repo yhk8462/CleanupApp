@@ -31,7 +31,8 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Locale;
 
-public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener{
+public class JoinGroup extends FragmentActivity implements
+        OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener {
     private GoogleMap mMap;
     private DatabaseReference mUsers;
 
@@ -126,6 +127,7 @@ public class JoinGroup extends FragmentActivity implements OnMapReadyCallback,Lo
                         siteInfo.put("when", user.getWhen());
                         siteInfo.put("where", user.getWhere());
                         siteInfo.put("contact", user.getContact());
+                        siteInfo.put("key", key);
                     } catch (Exception ex) {
 
                     }

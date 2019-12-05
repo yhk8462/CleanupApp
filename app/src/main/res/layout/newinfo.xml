@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".newInfo">
+    android:layout_height="300dp"
+    android:background="#FFFFFF"
+    tools:context=".JoinInfoDialog">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_marginTop="20dp"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:textSize="40dp"
-            android:textColor="#FFFFFF"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Provide basic info" />
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="#213D61"
+            android:fontFamily="sans-serif"
+            android:padding="15dp"
+            android:text="Provide your basic information"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/edtName"
-            android:layout_width="380dp"
+            android:layout_width="330dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/name"
             android:ems="10"
@@ -37,27 +37,15 @@
 
         <EditText
             android:id="@+id/edtPhone"
-            android:layout_width="380dp"
+            android:layout_width="330dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/phone"
             android:ems="10"
             android:hint="  Phone Number"
             android:inputType="number"
             android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/btnCreate"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="140dp"
-            android:background="@drawable/corners"
-            android:elevation="16dp"
-            android:text="Join"
-            android:textColor="#FFFFFF"
-            android:textSize="16dp" />
 
     </LinearLayout>
 

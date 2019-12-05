@@ -82,9 +82,4 @@ public class CleanupJoinDialog extends DialogFragment {
          */
         return builder.create();
     }
-
-    private void saveUserCleanupInDb(String userId, String title) {
-        UserCleanupSite userCleanupSite = new UserCleanupSite(userId, title, new Date());
-        FirebaseDatabase.getInstance().getReference().child("user_cleanup").child(title).setValue(userCleanupSite);
-    }
 }

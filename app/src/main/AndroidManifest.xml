@@ -33,9 +33,10 @@
         <activity android:name=".JoinGroup"></activity>
         <activity android:name=".cInfo"></activity>
         <activity android:name=".cMap3"></activity>
-        <activity android:name=".newInfo"></activity>
+        <activity android:name=".JoinInfoDialog"></activity>
         <activity android:name=".SiteList"></activity>
         <activity android:name=".ViewJoinGroup"></activity>
+        <activity android:name=".CleanupJoinSuccessDialog"></activity>
 
         <activity android:name=".MainMenu">
             <intent-filter>
