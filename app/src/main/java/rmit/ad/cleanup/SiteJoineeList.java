@@ -2,13 +2,11 @@ package rmit.ad.cleanup;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +17,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class SiteList extends AppCompatActivity {
+public class SiteJoineeList extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     ListView users;
@@ -82,7 +78,7 @@ public class SiteList extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SiteList.this, JoinGroup.class);
+                Intent intent = new Intent(SiteJoineeList.this, MainMenu.class);
                 startActivity(intent);
             }
         });

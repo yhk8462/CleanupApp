@@ -1,5 +1,6 @@
 package rmit.ad.cleanup;
 
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -82,6 +83,15 @@ public class ViewJoinGroup extends FragmentActivity implements
                 args.putString("key", key);
                 cleanupJoinDialog.setArguments(args);
                 cleanupJoinDialog.show(getSupportFragmentManager(),"cleanup_join_dialog");
+            }
+        });
+
+        joineeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewJoinGroup.this, SiteJoineeList.class);
+                intent.putExtra("key", key);
+                startActivity(intent);
             }
         });
     }

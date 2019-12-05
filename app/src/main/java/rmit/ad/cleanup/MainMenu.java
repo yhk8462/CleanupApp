@@ -30,6 +30,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(MainMenu.this, MainActivity.class);
+                intent2.putExtra("from", "JOIN");
                 startActivity(intent2);
             }
         });

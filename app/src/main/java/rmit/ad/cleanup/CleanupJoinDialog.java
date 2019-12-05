@@ -70,16 +70,6 @@ public class CleanupJoinDialog extends DialogFragment {
             }
         });
 
-        /**
-        builder.setNegativeButton("View users joined", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent2 = new Intent(CleanupJoinDialog.this.getActivity(), SiteList.class);
-                intent2.putExtra("key", key);
-                startActivity(intent2);
-            }
-        });
-         */
         return builder.create();
     }
 }

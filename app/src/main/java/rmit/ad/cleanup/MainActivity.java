@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getName();
 
     private FirebaseAuth mAuth;
+    private String fromPage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fromPage = getIntent().getExtras().getString("from");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -68,8 +71,13 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "Logging in", Toast.LENGTH_SHORT).show();
                             //updateUI(user);
-                            Intent intent =new Intent(MainActivity.this,menu.class);
-                            startActivity(intent);
+                            if(fromPage != null && fromPage.equals("JOIN")){
+                                Intent intent =new Intent(MainActivity.this,JoinGroup.class);
+                                startActivity(intent);
+                            } else {
+                                Intent intent =new Intent(MainActivity.this,menu.class);
+                                startActivity(intent);
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());

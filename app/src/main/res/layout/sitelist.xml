@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@android:color/white"
     tools:context=".JoinInfoDialog">
 
 
@@ -14,15 +14,17 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/textView"
-            android:layout_marginTop="20dp"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
-            android:textColor="#FFFFFF"
-            android:fontFamily="sans-serif-condensed"
-            android:text="List of Joined Users" />
+            android:background="#213D61"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:text="Joinee List"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
         <ListView
             android:id="@+id/ListView"
@@ -39,7 +41,7 @@
             android:layout_marginLeft="140dp"
             android:background="@drawable/corners"
             android:elevation="16dp"
-            android:text="Return"
+            android:text="Menu"
             android:textColor="#FFFFFF"
             android:textSize="16dp" />
 
