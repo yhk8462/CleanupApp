@@ -45,6 +45,20 @@
             </intent-filter>
         </activity>
 
+        <!-- Firebase Notifications -->
+        <service android:name=".FirebaseReceiverService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".CleanupFirebaseService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+
     </application>
 
 </manifest>
