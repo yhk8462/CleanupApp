@@ -58,8 +58,8 @@ public class ViewJoinGroup extends FragmentActivity implements
             String title = "Cleanup Site: " + siteInfoJson.get("title");
             titleTxt.setText(title);
 
-            String dateStr = "Date      ;  " + siteInfoJson.getString("where");
-            String locationStr = "Location  ;  " + siteInfoJson.getString("when");
+            String dateStr = "Date      ;  " + siteInfoJson.getString("when");
+            String locationStr = "Location  ;  " + siteInfoJson.getString("where");
             String contactStr = "Contact  ;  " + siteInfoJson.getString("contact");
             key = siteInfoJson.getString("key");
             dateTxt.setText(dateStr);

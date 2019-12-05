@@ -26,14 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getName();
 
     private FirebaseAuth mAuth;
-    private String fromPage = null;
+    private String fromPage ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        fromPage = getIntent().getExtras().getString("from");
 
         mAuth = FirebaseAuth.getInstance();
 
