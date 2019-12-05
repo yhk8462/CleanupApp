@@ -6,12 +6,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +21,8 @@ public class JoinInfoDialog extends DialogFragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DatabaseReference mDatabase;
     private String strName;
+    private FirebaseAuth mAuth;
+    String key;
 
     @NonNull
     @Override
@@ -30,7 +32,7 @@ public class JoinInfoDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.newinfo, null);
 
 
-        String key = getArguments().getString("key");
+        key = getArguments().getString("key");
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Cleanup Sites").child(key).child("Users");
@@ -64,6 +66,7 @@ public class JoinInfoDialog extends DialogFragment {
                 String contact = nContact.getText().toString().trim();
 
                 String id = mDatabase.push().getKey();
+
                 mContact info = new mContact(name, contact);
                 //databaseReference
                 mDatabase.child(id).setValue(info);
@@ -75,7 +78,7 @@ public class JoinInfoDialog extends DialogFragment {
                 Bundle args = new Bundle();
                 args.putString("name", strName);
                 cleanupJoinSuccessDialog.setArguments(args);
-                cleanupJoinSuccessDialog.show(getFragmentManager(),"cleanup_join_dialog");
+                cleanupJoinSuccessDialog.show(getFragmentManager(), "cleanup_join_dialog");
             }
         });
 

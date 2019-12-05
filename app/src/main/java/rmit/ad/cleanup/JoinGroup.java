@@ -32,12 +32,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class JoinGroup extends FragmentActivity implements
-        OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener {
-    private GoogleMap mMap;
-    private DatabaseReference mUsers;
-
+        OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
     SearchView searchView;
     Marker marker;
+    private GoogleMap mMap;
+    private DatabaseReference mUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +56,19 @@ public class JoinGroup extends FragmentActivity implements
                 System.out.println(location);
                 List<Address> addressList = null;
 
-                if(location != null || !location.equals("")){
+                if (location != null || !location.equals("")) {
                     Geocoder geocoder = new Geocoder(getBaseContext(), Locale.ENGLISH);
-                    try{
+                    try {
                         addressList = geocoder.getFromLocationName(location, 1);
 
                         Address searchAddress = addressList.get(0);
-                        System.out.println("address: " + searchAddress.getLatitude()+searchAddress.getLongitude());
+                        System.out.println("address: " + searchAddress.getLatitude() + searchAddress.getLongitude());
                         LatLng latLng = new LatLng(searchAddress.getLatitude(), searchAddress.getLongitude());
 
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
                         mMap.getUiSettings().setZoomControlsEnabled(true);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -82,7 +81,7 @@ public class JoinGroup extends FragmentActivity implements
             }
         });
 
-        mUsers= FirebaseDatabase.getInstance().getReference("Cleanup Sites");
+        mUsers = FirebaseDatabase.getInstance().getReference("Cleanup Sites");
         mUsers.push().setValue(marker);
 
         Button btnreturn = findViewById(R.id.btnReturn);
@@ -101,7 +100,7 @@ public class JoinGroup extends FragmentActivity implements
         mMap = googleMap;
 
         // Default address
-        LatLng rmit =  new LatLng( 10.730183, 106.694264);
+        LatLng rmit = new LatLng(10.730183, 106.694264);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(rmit));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(rmit, 15));
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -113,14 +112,14 @@ public class JoinGroup extends FragmentActivity implements
         mUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot s : dataSnapshot.getChildren()){
+                for (DataSnapshot s : dataSnapshot.getChildren()) {
                     ClusterMarker user = s.getValue(ClusterMarker.class);
                     String key = s.getKey();
                     //Toast.makeText(JoinGroup.this,""+key,Toast.LENGTH_SHORT).show();
-                    LatLng location=new LatLng(user.latitude,user.longitude);
+                    LatLng location = new LatLng(user.latitude, user.longitude);
 
                     JSONObject siteInfo = new JSONObject();
-                    try{
+                    try {
                         siteInfo.put("title", user.getTitle());
                         siteInfo.put("latitude", user.getLatitude());
                         siteInfo.put("longitude", user.getLongitude());
@@ -136,7 +135,7 @@ public class JoinGroup extends FragmentActivity implements
                             .position(location)
                             .title(key)
                             .snippet(siteInfo.toString())
-                            )
+                    )
                             .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
                 }
             }
@@ -174,10 +173,10 @@ public class JoinGroup extends FragmentActivity implements
         CleanupJoinDialog cleanupJoinDialog = new CleanupJoinDialog();
         Bundle args = new Bundle();
         args.putString("key", marker.getTitle());
-        args.putString("info",marker.getSnippet());
+        args.putString("info", marker.getSnippet());
 
         cleanupJoinDialog.setArguments(args);
-        cleanupJoinDialog.show(getSupportFragmentManager(),"cleanup_join_dialog");
+        cleanupJoinDialog.show(getSupportFragmentManager(), "cleanup_join_dialog");
         return true;
     }
 }

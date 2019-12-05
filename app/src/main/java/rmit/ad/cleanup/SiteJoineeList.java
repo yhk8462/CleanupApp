@@ -78,7 +78,7 @@ public class SiteJoineeList extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SiteJoineeList.this, MainMenu.class);
+                Intent intent = new Intent(SiteJoineeList.this, JoinGroup.class);
                 startActivity(intent);
             }
         });

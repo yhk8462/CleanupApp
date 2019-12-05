@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,8 +20,15 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class ViewJoinGroup extends FragmentActivity implements
         OnMapReadyCallback,LocationListener,GoogleMap.OnMarkerClickListener {
@@ -78,6 +86,7 @@ public class ViewJoinGroup extends FragmentActivity implements
         joinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 JoinInfoDialog cleanupJoinDialog = new JoinInfoDialog();
                 Bundle args = new Bundle();
                 args.putString("key", key);

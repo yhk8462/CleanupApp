@@ -7,6 +7,7 @@ public class mContact {
     public mContact(String id,String contact) {
         this.id = id;
         this.contact = contact;
+
     }
     public mContact(){
 
